@@ -1,6 +1,10 @@
-# tiny-ai-examples
+# Tiny AI Examples
 
-Examples using `tiny-ai`.
+Examples using `@cubie-ai/tiny-ai`.
+
+![Cubie](https://github.com/Cubie-AI/tiny-ai/blob/main/publicMedia.png?raw=true)
+
+## Getting Started
 
 First make sure you have installed the dependencies.
 
