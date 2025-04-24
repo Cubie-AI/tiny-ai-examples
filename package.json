@@ -1,0 +1,32 @@
+{
+  "name": "tiny-ai-example",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist/ && tsc",
+    "prestart": "npm run build ",
+    "start": "node dist/index.js",
+    "dev": "node --env-file=.env --import tsx --watch -r ts-node/register src/index.ts",
+    "simple-agent": "node --env-file=.env --import tsx src/simple-agent/index.ts",
+    "express-agent": "node --env-file=.env --import tsx --watch -r ts-node/register src/express-agent/index.ts"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.1",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@cubie-ai/tiny-ai": "file:../cubie_framework",
+    "@inquirer/prompts": "^7.5.0",
+    "agent-twitter-client": "^0.0.18",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}
