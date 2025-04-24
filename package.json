@@ -12,7 +12,8 @@
     "start": "node dist/index.js",
     "dev": "node --env-file=.env --import tsx --watch -r ts-node/register src/index.ts",
     "simple-agent": "node --env-file=.env --import tsx src/simple-agent/index.ts",
-    "express-agent": "node --env-file=.env --import tsx --watch -r ts-node/register src/express-agent/index.ts"
+    "express-agent": "node --env-file=.env --import tsx --watch -r ts-node/register src/express-agent/index.ts",
+    "tool-use-simple-agent": "node --env-file=.env --import tsx --watch -r ts-node/register src/tool-use-simple-agent/index.ts"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
@@ -27,6 +28,7 @@
     "@inquirer/prompts": "^7.5.0",
     "agent-twitter-client": "^0.0.18",
     "dotenv": "^16.5.0",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "zod": "^3.24.3"
   }
 }
