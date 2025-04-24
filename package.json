@@ -24,8 +24,10 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@cubie-ai/solana-mcp": "^1.0.7",
     "@cubie-ai/tiny-ai": "file:../cubie_framework",
     "@inquirer/prompts": "^7.5.0",
+    "@modelcontextprotocol/sdk": "^1.10.2",
     "agent-twitter-client": "^0.0.18",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
