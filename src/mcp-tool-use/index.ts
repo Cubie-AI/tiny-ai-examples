@@ -14,12 +14,8 @@ async function main() {
     },
   });
 
+  // List resources from MCP client using our fail safe function
   const resourceList = await safeListResources(mcpClient);
-
-  // const { success: toolSuccess, data: tools } = await safeListTools(mcpClient);
-  // const { success: promptSuccess, data: prompts } = await safeListPrompts(
-  //   mcpClient
-  // );
 
   // Convert MCP resource to TinyAI (ai-sdk) tools
   const toolSet = {
