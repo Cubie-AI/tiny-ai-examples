@@ -13,7 +13,9 @@
     "dev": "node --env-file=.env --import tsx --watch -r ts-node/register src/index.ts",
     "simple-agent": "node --env-file=.env --import tsx src/simple-agent/index.ts",
     "express-agent": "node --env-file=.env --import tsx --watch -r ts-node/register src/express-agent/index.ts",
-    "tool-use-simple-agent": "node --env-file=.env --import tsx --watch -r ts-node/register src/tool-use-simple-agent/index.ts"
+    "agent-tool-use": "node --env-file=.env --import tsx --watch -r ts-node/register src/agent-tool-use/index.ts",
+    "mcp-tool-use": "npm run build && node --env-file=.env dist/mcp-tool-use/index.js",
+    "simple-agent-convo": "node --env-file=.env --import tsx --watch -r ts-node/register src/simple-agent-convo/index.ts"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
@@ -24,13 +26,14 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@cubie-ai/solana-mcp": "^1.0.7",
+    "@cubie-ai/solana-mcp": "^1.0.12",
     "@cubie-ai/tiny-ai": "file:../cubie_framework",
     "@inquirer/prompts": "^7.5.0",
     "@modelcontextprotocol/sdk": "^1.10.2",
     "agent-twitter-client": "^0.0.18",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "zod": "^3.24.3"
+    "json-schema-to-zod": "^2.6.1",
+    "zod": "3.24.3"
   }
 }

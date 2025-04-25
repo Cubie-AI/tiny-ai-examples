@@ -1,18 +1,8 @@
-import { TinyAgent, TinyAnthropic } from "@cubie-ai/tiny-ai";
 import { input } from "@inquirer/prompts";
 import "dotenv/config";
+import { agent } from "./agent";
 
 async function main() {
-  const anthropic = new TinyAnthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY,
-  });
-
-  const agent = new TinyAgent({
-    provider: anthropic,
-    system: "You are a helpful assistant.",
-    name: "Cubie",
-  });
-
   const userMessage = await input({
     message: "You: ",
     validate: (input) => {

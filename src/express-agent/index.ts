@@ -1,12 +1,11 @@
 import express, { NextFunction, Request, Response } from "express";
-import { handleUserMessage } from "./agent";
+import { handleUserMessage } from "./agent.js";
 
 const app = express();
 
 app.use(express.json());
 
 app.post("/api/message", async (req, res, next) => {
-  let result;
   try {
     const { message } = req.body;
 
@@ -14,9 +13,7 @@ app.post("/api/message", async (req, res, next) => {
       res.status(400).json({ error: "Message is required" });
       return;
     }
-
-    // Simulate a response from the agent
-    result = await handleUserMessage(message);
+    const result = await handleUserMessage(message);
     res.status(200).json({
       text: result.data?.text,
     });
