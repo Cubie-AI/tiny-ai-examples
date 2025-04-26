@@ -8,7 +8,7 @@ Examples using `@cubie-ai/tiny-ai`.
 
 - [Getting Started](#getting-started)
 - [Simple Agent](#simple-agent)
-- [Conversational Agent](#simple-agent-convo)
+- [Conversational Agent](#conversational-agent)
 - [ExpressJs Agent](#express-agent)
 - [Tool Use Agent](#agent-tool-use)
 - [MCP Tool Use Agent](#mcp-tool-use)
