@@ -1,6 +1,6 @@
-import { BuildToolParams } from "@cubie-ai/tiny-ai";
+import { TinyTool, TinyToolConfig } from "@cubie-ai/tiny-ai";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import jsonSchemaToZod, { JsonSchema } from "json-schema-to-zod";
+import { jsonSchema } from "ai";
 import z from "zod";
 
 function captureUriParameters(uri: string) {
@@ -20,38 +20,46 @@ function replaceUriParameters(uri: string, params: Record<string, string>) {
   return newUri;
 }
 
-export function convertMCPToolsToTools(
-  mcpClient: Client,
-  tools: {
-    name: string;
-    inputSchema: unknown;
-    description?: string;
-  }[]
-) {
-  let toolSet: Record<string, BuildToolParams> = {};
+type ToolItem = {
+  name: string;
+  inputSchema: unknown;
+  description?: string;
+};
 
-  tools.forEach((tool) => {
-    toolSet[tool.name] = {
-      description: tool.description ?? "",
-      parameters: jsonSchemaToZod(tool.inputSchema as JsonSchema),
-      handler: async (params) => {
-        const data = await mcpClient.callTool({
-          name: tool.name,
-          params,
+function buildTinyTool(client: Client, item: ToolItem): TinyTool {
+  return new TinyTool(item.name, {
+    description: item.description ?? "",
+    parameters: jsonSchema(item.inputSchema),
+    handler: async (params) => {
+      try {
+        return await client.callTool({
+          name: item.name,
+          arguments: params,
         });
-        return data.contents;
-      },
-    };
+      } catch (error) {
+        console.error("Error executing tool:", error);
+        throw error;
+      }
+    },
   });
+}
+
+// TODO: move to @cubie-ai/tiny-ai => This is a helper function to convert MCP server tools to tools compatible with TinyAI
+export function convertMCPToolsToTools(client: Client, tools: ToolItem[]) {
+  let toolSet: Record<string, TinyTool> = {};
+  for (const tool of tools) {
+    toolSet[tool.name] = buildTinyTool(client, tool);
+  }
 
   return toolSet;
 }
 
+// TODO: move to @cubie-ai/tiny-ai => This is a helper function to convert MCP resources to tools compatible with TinyAI
 export function convertResourcesToTools(
   mcpClient: Client,
   resources: { uri: string; name: string; description?: string }[]
 ) {
-  let toolSet: Record<string, BuildToolParams> = {};
+  let toolSet: Record<string, TinyToolConfig> = {};
 
   // Iterate through the resources and extract their "path" parameters
   // Each path paramter in the URI template will be a tool paramter the agent will infer from the user

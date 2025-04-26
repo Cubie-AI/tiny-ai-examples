@@ -13,6 +13,7 @@ async function main() {
         return input.trim() !== "" ? true : "Please enter a message.";
       },
     });
+    console.log("Calling ai to generate some text");
 
     const response = await agent.generateText({
       messages: appendMessage({

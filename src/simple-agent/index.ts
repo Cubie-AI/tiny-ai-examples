@@ -9,8 +9,6 @@ async function main() {
 
   const agent = new TinyAgent({
     provider: anthropic,
-    system: "You are a helpful assistant.",
-    name: "Cubie",
   });
 
   const userMessage = await input({

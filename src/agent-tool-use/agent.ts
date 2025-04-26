@@ -1,4 +1,4 @@
-import { TinyAgent, TinyAnthropic } from "@cubie-ai/tiny-ai";
+import { TinyAgent, TinyAnthropic, TinyTool } from "@cubie-ai/tiny-ai";
 import z from "zod";
 import { getPrice } from "./jupiter";
 
@@ -6,11 +6,9 @@ export const agent = new TinyAgent({
   provider: new TinyAnthropic({
     apiKey: process.env.ANTHROPIC_API_KEY,
   }),
-  system: "You are a helpful assistant.",
-  name: "Cubie",
 });
 
-agent.registerTool("getSwapPrice", {
+const swap = new TinyTool("getSwapPrice", {
   description:
     "Get the swap price between inputMint and outputMint. Default outputMint is USDC.",
   parameters: z.object({
@@ -23,3 +21,5 @@ agent.registerTool("getSwapPrice", {
   }),
   handler: getPrice,
 });
+
+agent.putTool(swap);
