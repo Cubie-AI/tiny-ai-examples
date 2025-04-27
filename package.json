@@ -13,7 +13,8 @@
     "express-agent": "node --env-file=.env --import tsx --watch -r ts-node/register src/express-agent/index.ts",
     "agent-tool-use": "node --env-file=.env --import tsx --watch -r ts-node/register src/agent-tool-use/index.ts",
     "mcp-tool-use": "npm run build && node --env-file=.env dist/mcp-tool-use/index.js",
-    "simple-agent-convo": "node --env-file=.env --import tsx --watch -r ts-node/register src/simple-agent-convo/index.ts"
+    "simple-agent-convo": "node --env-file=.env --import tsx --watch -r ts-node/register src/simple-agent-convo/index.ts",
+    "multi-tool-sources": "node --env-file=.env --import tsx --watch -r ts-node/register src/multi-tool-sources/index.ts"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
@@ -24,10 +25,11 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@cubie-ai/solana-mcp": "^1.0.19",
-    "@cubie-ai/tiny-ai": "^0.0.12",
+    "@cubie-ai/solana-mcp": "file:../cubie_mcp",
+    "@cubie-ai/tiny-ai": "file:../cubie_framework",
     "@inquirer/prompts": "^7.5.0",
     "@modelcontextprotocol/sdk": "^1.10.2",
+    "@solana/web3.js": "^1.98.1",
     "agent-twitter-client": "^0.0.18",
     "ai": "^4.3.10",
     "dotenv": "^16.5.0",

@@ -162,3 +162,94 @@ Summary:
 
 Would you like me to provide any further analysis or breakdown of the token holders?
 ```
+
+## Multiple Tool Sources
+
+[Code For this Example](/src/multi-tool-sources/)
+
+Create an agent instance that is initialized with tools from the following places:
+
+1. In code registry for static tools (put in constructor)
+2. Tools from an MCPClient (in constructor)
+3. In code registry for tools that require a user context (used during generate call)
+4. Runtime dynamic tools from an event emmitter that runs every 10 seconds
+
+### Startup
+
+You need to open 2 terminals to run this example.
+
+Terminal 1: Start our MCP Server with solana access
+
+```bash
+npm run build
+npm run build && node dist/multi-tool-sources/app.js
+```
+
+Terminal 2: Start the agent instance / construction
+
+```bash
+npm run multi-tool-sources
+```
+
+### Sample Output
+
+```bash
+
+
+Welcome to the Tiny Agent!
+===========================
+
+This is a simple conversation loop. Type 'goodbye' to exit.
+
+You can ask me anything, and I'll do my best to help you.
+
+
+Available Tools
+=================
+- getWeather
+- getTokenHolders
+- getTokenSupply
+- getTokenProgramByMintAddress
+- getAddressBalance
+- getAddressHoldings
+- getSignaturesForAddress
+- getJupiterQuote
+- getPrice
+=================
+
+
+✔ You:  hi
+Agent:  Hello! How can I assist you today? I'm ready to help you with various tasks such as checking weather, token information, prices, or any other queries you might have.
+
+Available Tools
+=================
+- getWeather
+- getTokenHolders
+- getTokenSupply
+- getTokenProgramByMintAddress
+- getAddressBalance
+- getAddressHoldings
+- getSignaturesForAddress
+- getJupiterQuote
+- getPrice
+=================
+
+
+✔ You:  how are you
+Agent:  I'm doing well, thank you for asking! As an AI assistant, I'm always ready and eager to help you with any questions or tasks you might have. Is there anything specific I can help you with today? Whether it's checking the weather, looking up token information, getting a price quote, or something else, I'm here to assist you.
+
+Available Tools
+=================
+- getWeather
+- tool_1745724394049
+- getTokenHolders
+- getTokenSupply
+- getTokenProgramByMintAddress
+- getAddressBalance
+- getAddressHoldings
+- getSignaturesForAddress
+- getJupiterQuote
+- getPrice
+=================
+
+```
